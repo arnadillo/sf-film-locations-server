@@ -1,0 +1,24 @@
+{
+  "name": "veerum-challenge-data-server",
+  "version": "0.0.1",
+  "description": "Node server that processes the geo data for the Veerum technical challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnadillo/veerum-challenge-data-server.git"
+  },
+  "author": "arnadillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arnadillo/veerum-challenge-data-server/issues"
+  },
+  "homepage": "https://github.com/arnadillo/veerum-challenge-data-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "papaparse": "^5.0.2"
+  }
+}
