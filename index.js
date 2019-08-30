@@ -15,17 +15,19 @@ main();
 app.get('/status', (req, res) => res.send('OK'));
 
 app.get('/locations', async function(req, res) {
-    console.log('\n\n == Request query: ', req.query);
-
     let foundEntry = _.find(formattedData, { 'Title': _.lowerCase(decodeURIComponent(req.query.title)) });
+    
+    if (_.isNil(foundEntry)) {
+        console.log(`\nNo entry found in data for ${req.query.title}`);
+        res.sendStatus(404);
+    }
+
     let locationData = await Promise.all(_.map(foundEntry.Locations, async (location) => {
         return {
             name: location,
             location: await geocodeAddress(location)
         };
     }));
-
-    console.log('\n\n === locationData: ', locationData);
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-Type', 'application/json');
@@ -44,14 +46,15 @@ async function geocodeAddress(location){
     };
     
     return rp(options).then((response) => {
-        console.log('\n\n ==== Response: ', response);
+        // Addresses not geocoded will not have coordinates.
         if (_.isEmpty(response.results)) {
             return;
         }
 
+        // Return the geocoded address lat and long.
         return response.results[0].geometry.location;
     }).catch((err) => {
-        console.log('\n\n === Error inside Geocoding: ', err);
+        console.log(`\nError during geocoding process: ${err}`);
     });
 }
 
@@ -75,3 +78,8 @@ function main() {
             .value();
     });
 }
+
+module.exports = {
+    app,
+    geocodeAddress
+};
