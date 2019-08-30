@@ -25,7 +25,7 @@ app.get('/locations', async function(req, res) {
     }
 
     let locationData = await Promise.all(_.map(foundEntry.Locations, async (location) => {
-        
+
         return {
             name: location,
             location: await geocodeAddress(location)
