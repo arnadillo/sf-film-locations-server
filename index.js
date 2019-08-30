@@ -52,7 +52,7 @@ async function geocodeAddress(location){
         method: 'GET',
         uri: `https://maps.googleapis.com/maps/api/geocode/json`,
         qs: {
-            key: 'AIzaSyDNk7in3pRazdod4nels3lv_7ElxZTtzvo',
+            key: process.env.GOOGLE_API_KEY,
             address: location,
             region: 'CA'
         },

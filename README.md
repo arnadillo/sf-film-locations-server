@@ -4,13 +4,16 @@ Node application that processes the [DataSF:Film Locations](https://data.sfgov.o
 ## Getting started
 Requires NodeJS `>= v8.14.0` to be installed on your machine.
 
+**This application also depends on the `GOOGLE_API_KEY` env var being loaded, carrying a google api key.**
+
+
 ```
 $> cd veerum-challenge-data-server
 $> npm install
 $> npm start
 ```
 
-The application will occupy port number 3001, an a successful startup is represented by the following:
+The application will occupy port number 3001, and a successful startup is represented by the following:
 
 ```
 Application is listening on port 3001!
