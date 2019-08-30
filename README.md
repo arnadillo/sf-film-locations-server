@@ -1,5 +1,26 @@
 # veerum-challenge-data-server
-Node application that processes the geo data for the Veerum technical challenge, submitted by Arnold Padillo on August 29, 2019.
+Node application that processes the [DataSF:Film Locations](https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am) data set and filters it as a response to a `/locations` query by movie title. <br><br> Written for the Veerum technical challenge, submitted by Arnold Padillo on August 29, 2019.
+
+## Getting started
+Requires NodeJS `>= v8.14.0` to be installed on your machine.
+
+```
+$> cd veerum-challenge-data-server
+$> npm install
+$> npm start
+```
+
+The application will occupy port number 3001, an a successful startup is represented by the following:
+
+```
+Application is listening on port 3001!
+```
+
+You can then query the API as follows:
+
+```
+http://localhost:3001/locations?title=<movieTitleInDataset>
+```
 
 ## Problem statement
 > Programming Challenge - San Francisco Movie Locations <br><br>
@@ -103,12 +124,13 @@ The object is then complete and ready to be sent back to the requestor. This app
 ## Known limitations
 * The implementation relies heavily on Google Map APIs to geocode. Not all the location strings in the data set are straightforward and understood by the geocoding API, so it is evident that the addresses that are most complete and identifiable (e.g. "301 Rolph Street") will yield more accurate results when compared to ambiguous addresses (e.g. "Driving around Taylor/Pacific/Leavenworth"). To tackle this challenge further (and given more time), I would have explored an approach involving Natural Language Processing to arrive at more complete and accurate addresses to feed the geocoding API.
 
-* The `/locations` query endpoint does not work on partial text matches. It expects exact string matches (although it is case insensitive).
+* The `/locations` query endpoint does not work on partial title matches. It expects exact string matches (although it is case insensitive). In other words, the API endpoint will not be able to find the movie title `'Veno'`, but it _will_ find the movie title `'Venom'` or `vEnOM`.
 
 
 
 ## Technologies
-Node v8.14.0, using the express framework.
+NodeJS v8.14.0, using the express framework. Papaparse for parsing, Google Maps API for geocoding.
+
 
 
 

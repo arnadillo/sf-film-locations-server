@@ -4,6 +4,7 @@
   "description": "Node server that processes the geo data for the Veerum technical challenge",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha test --exit"
   },
   "repository": {
