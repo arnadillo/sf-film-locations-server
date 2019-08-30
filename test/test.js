@@ -32,6 +32,16 @@ describe('Server unit tests' , () => {
          });
     });
 
+    it('should return a 404 Not Found when the queried title was not found', (done) => {
+        chai.request(app)
+        .get('/locations')
+        .query({ title: 'NotAMovieTitle' })
+        .end((err, res) => {
+            res.should.have.status(404);
+            done();
+         });
+    });
+
     describe('Geocoding tests', () => {
 
         it('should return lat and lng of a successfully geocoded address', (done) => {

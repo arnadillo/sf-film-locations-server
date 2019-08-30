@@ -10,7 +10,7 @@ const DATASET_LOCATION = './datasets/Film_Locations_in_San_Francisco.csv';
 
 let formattedData;
 
-main();
+loadDataInMemory();
 
 app.get('/status', (req, res) => res.send('OK'));
 
@@ -20,9 +20,12 @@ app.get('/locations', async function(req, res) {
     if (_.isNil(foundEntry)) {
         console.log(`\nNo entry found in data for ${req.query.title}`);
         res.sendStatus(404);
+        
+        return;
     }
 
     let locationData = await Promise.all(_.map(foundEntry.Locations, async (location) => {
+        
         return {
             name: location,
             location: await geocodeAddress(location)
@@ -37,11 +40,22 @@ app.get('/locations', async function(req, res) {
     }));
 });
 
+/**
+ * Takes a textual address and converts it into geographical coordinates
+ * if googleapis is able to find it, otherwise returns undefined.
+ * 
+ * @param {string} location - An ambiguous textual address (e.g. 'Golden Gate Bridge')
+ */
 async function geocodeAddress(location){
-    //TODO: Fix query string syntax for this.
+
     let options = {
         method: 'GET',
-        uri: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}&region=ca&key=AIzaSyDNk7in3pRazdod4nels3lv_7ElxZTtzvo`,
+        uri: `https://maps.googleapis.com/maps/api/geocode/json`,
+        qs: {
+            key: 'AIzaSyDNk7in3pRazdod4nels3lv_7ElxZTtzvo',
+            address: location,
+            region: 'CA'
+        },
         json: true
     };
     
@@ -60,7 +74,11 @@ async function geocodeAddress(location){
 
 app.listen(PORT, () => console.log(`Application is listening on port ${PORT}!`)); 
 
-function main() {
+/**
+ *  Reads the .csv, parses it and formats the data in preparation 
+ *  for query and geocoding.
+ */
+function loadDataInMemory() {
     fs.readFile(DATASET_LOCATION, 'utf8', function(err, contents) {
         
         // Parsing the CSV.
@@ -76,6 +94,8 @@ function main() {
                  Locations: _.uniq(_.map(value, 'Locations'))
             }))
             .value();
+        
+        return;
     });
 }
 
