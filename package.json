@@ -1,5 +1,5 @@
 {
-  "name": "veerum-challenge-data-server",
+  "name": "sf-film-locations-server",
   "version": "0.0.1",
   "description": "Node server that processes the geo data for the Veerum technical challenge",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arnadillo/veerum-challenge-data-server.git"
+    "url": "git+https://github.com/arnadillo/sf-film-locations-server.git"
   },
   "author": "arnadillo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/arnadillo/veerum-challenge-data-server/issues"
+    "url": "https://github.com/arnadillo/sf-film-locations-server/issues"
   },
-  "homepage": "https://github.com/arnadillo/veerum-challenge-data-server#readme",
+  "homepage": "https://github.com/arnadillo/sf-film-locations-server#readme",
   "dependencies": {
     "express": "^4.17.1",
     "lodash": "^4.17.15",
