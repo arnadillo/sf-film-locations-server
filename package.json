@@ -1,7 +1,7 @@
 {
   "name": "sf-film-locations-server",
   "version": "0.0.1",
-  "description": "Node server that processes the geo data for the Veerum technical challenge",
+  "description": "Node server that processes the geo data for movies filmed in San Francisco",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

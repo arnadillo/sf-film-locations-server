@@ -1,4 +1,4 @@
-# veerum-challenge-data-server
+# sf-film-locations-server
 Node application that processes the [DataSF:Film Locations](https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am) data set and filters it as a response to a `/locations` query by movie title. <br><br> Written for the Veerum technical challenge, submitted by Arnold Padillo on August 29, 2019.
 
 ## Getting started
@@ -8,7 +8,7 @@ Requires NodeJS `>= v8.14.0` to be installed on your machine.
 
 
 ```
-$> cd veerum-challenge-data-server
+$> cd sf-film-locations-server
 $> npm install
 $> npm start
 ```
